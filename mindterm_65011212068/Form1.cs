@@ -130,7 +130,7 @@ namespace mindterm_65011212068
             Order order = new Order();
             order.idmenu = int.Parse(textBox10.Text);
             order.number = number;
-            order.priceamount = number + price;
+            order.priceamount = number * price;
             order.date = DateTime.Now;
             order.trans = ((ComboboxMyItems)(comboBox3.SelectedItem)).value;
             context.Orders.Add(order);
@@ -144,6 +144,27 @@ namespace mindterm_65011212068
         private void tabPage3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            String search = textBox11.Text;
+            menuBindingSource1.DataSource = context.Menus.Where(s => s.name.Contains(search)).ToList();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+          
+
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = dateTimePicker1.Value;
+            Console.WriteLine(dateTimePicker1.Value);
+            orderBindingSource.DataSource = context.Orders.Where(o => o.date.Value.Year == dt.Year && o.date.Value.Month == dt.Month && o.date.Value.Day == dt.Day).ToList();
         }
     }
 }
