@@ -35,6 +35,7 @@ namespace mindterm_65011212068
         {
             menuBindingSource.DataSource = context.Menus.ToList();
             menuBindingSource1.DataSource = context.Menus.ToList();
+            orderBindingSource.DataSource = context.Orders.ToList();   
             var result = context.TypeCoffees.OrderBy(T => T.Name).Select(T => new { T.idtype, T.Name });
             foreach (var item in result)
             {
