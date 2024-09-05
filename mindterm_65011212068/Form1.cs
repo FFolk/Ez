@@ -167,5 +167,10 @@ namespace mindterm_65011212068
             Console.WriteLine(dateTimePicker1.Value);
             orderBindingSource.DataSource = context.Orders.Where(o => o.date.Value.Year == dt.Year && o.date.Value.Month == dt.Month && o.date.Value.Day == dt.Day).ToList();
         }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+ 
+        }
     }
 }
