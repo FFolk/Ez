@@ -19,5 +19,6 @@ namespace mindterm_65011212068
         public Nullable<int> number { get; set; }
         public Nullable<int> priceamount { get; set; }
         public Nullable<System.DateTime> date { get; set; }
+        public Nullable<int> trans { get; set; }
     }
 }

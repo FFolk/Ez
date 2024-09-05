@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace mindterm_65011212068
 {
@@ -33,12 +34,16 @@ namespace mindterm_65011212068
         private void Form1_Load(object sender, EventArgs e)
         {
             menuBindingSource.DataSource = context.Menus.ToList();
+            menuBindingSource1.DataSource = context.Menus.ToList();
             var result = context.TypeCoffees.OrderBy(T => T.Name).Select(T => new { T.idtype, T.Name });
             foreach (var item in result)
             {
                 comboBox1.Items.Add(new ComboboxMyItems(item.idtype,item.Name));
                 comboBox2.Items.Add(new ComboboxMyItems(item.idtype, item.Name));
             }
+            comboBox3.Items.Add(new ComboboxMyItems(0, "เงินสด"));
+            comboBox3.Items.Add(new ComboboxMyItems(1, "เงินโอน"));
+
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -111,6 +116,34 @@ namespace mindterm_65011212068
                 MessageBox.Show("add complete");
                 menuBindingSource.DataSource = context.Menus.ToList();
             }
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int number = int.Parse(textBox9.Text);
+            int price = int.Parse(textBox8.Text);
+            Order order = new Order();
+            order.idmenu = int.Parse(textBox10.Text);
+            order.number = number;
+            order.priceamount = number + price;
+            order.date = DateTime.Now;
+            order.trans = ((ComboboxMyItems)(comboBox3.SelectedItem)).value;
+            context.Orders.Add(order);
+            int change = context.SaveChanges();
+            if (change > 0)
+            {
+                MessageBox.Show("ขาย complete");
+            }
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
